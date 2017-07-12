@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MusicWaveView">
+        <attr name="mwv_count" format="integer"/>
+        <attr name="mwv_color" format="color"/>
+        <attr name="mwv_delays" format="string"/>
+        <attr name="mwv_radius" format="dimension"/>
+    </declare-styleable>
+</resources>

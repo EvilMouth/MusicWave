@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zyhang.musicWave.example.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.zyhang.musicWave.MusicWaveView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:mwv_color="@color/colorAccent"
+            app:mwv_radius="0dp"/>
+
+        <com.zyhang.musicWave.MusicWaveView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:mwv_color="@color/colorPrimary"
+            app:mwv_count="6"
+            app:mwv_delays="100 200 300 400 500 600"
+            app:mwv_radius="1dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.zyhang.musicWave.MusicWaveView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:mwv_color="@color/colorPrimaryDark"
+            app:mwv_count="7"
+            app:mwv_delays="300 700 200 400 100 600 500"
+            app:mwv_radius="2dp"/>
+
+        <com.zyhang.musicWave.MusicWaveView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:mwv_color="@android:color/black"
+            app:mwv_delays="100 300 500 200 400"
+            app:mwv_radius="3dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.zyhang.musicWave.MusicWaveView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:mwv_color="@android:color/holo_blue_bright"
+            app:mwv_count="8"
+            app:mwv_delays="100 200 300 400 500 600 700 800"
+            app:mwv_radius="4dp"/>
+
+        <com.zyhang.musicWave.MusicWaveView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:mwv_color="@android:color/holo_green_light"
+            app:mwv_count="9"
+            app:mwv_delays="600 400 500 300 100 200 700 900 800"
+            app:mwv_radius="5dp"/>
+    </LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>
