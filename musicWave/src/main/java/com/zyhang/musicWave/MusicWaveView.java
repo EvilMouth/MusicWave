@@ -117,8 +117,8 @@ public class MusicWaveView extends View {
 
     @Override
     protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
         stop();
+        super.onDetachedFromWindow();
     }
 
     @Override
@@ -132,12 +132,18 @@ public class MusicWaveView extends View {
     }
 
     public void start() {
+        if (getVisibility() != VISIBLE) {
+            return;
+        }
         for (ValueAnimator animator : mAnimators) {
             animator.start();
         }
     }
 
     public void stop() {
+        if (mAnimators == null) {
+            return;
+        }
         for (ValueAnimator animator : mAnimators) {
             animator.end();
         }
