@@ -9,8 +9,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -31,6 +33,7 @@ public class MusicWaveView extends View {
     private int mColor = Color.RED;
     private String mDelays = "200 500 100 400 300";
     private float mRadius = 5;
+    private int mDuration = 1000;
 
     private RectF mRectF;
     private Paint mPaint;
@@ -66,6 +69,7 @@ public class MusicWaveView extends View {
                 mDelays = ta.getString(R.styleable.MusicWaveView_mwv_delays);
             }
             mRadius = ta.getDimension(R.styleable.MusicWaveView_mwv_radius, mRadius);
+            mDuration = ta.getInteger(R.styleable.MusicWaveView_mwv_duration, mDuration);
             ta.recycle();
         }
 
@@ -79,14 +83,16 @@ public class MusicWaveView extends View {
             final int index = i;
             mFloats[index] = 1.0F;
             ValueAnimator animator = ValueAnimator.ofFloat(1.0F, -0.5F, 1F);
-            animator.setDuration(1000);
+            animator.setDuration(mDuration);
             animator.setRepeatCount(-1);
             animator.setStartDelay(Long.parseLong(delays[index]));
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     mFloats[index] = (float) valueAnimator.getAnimatedValue();
-                    postInvalidate();
+                    if (index == 0) {
+                        invalidate();
+                    }
                 }
             });
             mAnimators.add(animator);
@@ -110,15 +116,13 @@ public class MusicWaveView extends View {
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        start();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        stop();
-        super.onDetachedFromWindow();
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        if (visibility == VISIBLE) {
+            start();
+        } else {
+            stop();
+        }
     }
 
     @Override
@@ -132,7 +136,8 @@ public class MusicWaveView extends View {
     }
 
     public void start() {
-        if (getVisibility() != VISIBLE) {
+        if (getVisibility() != VISIBLE || mAnimators == null) {
+            stop();
             return;
         }
         for (ValueAnimator animator : mAnimators) {

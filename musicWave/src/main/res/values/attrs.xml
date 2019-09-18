@@ -5,5 +5,6 @@
         <attr name="mwv_color" format="color"/>
         <attr name="mwv_delays" format="string"/>
         <attr name="mwv_radius" format="dimension"/>
+        <attr name="mwv_duration" format="integer"/>
     </declare-styleable>
 </resources>
